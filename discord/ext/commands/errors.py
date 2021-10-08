@@ -71,7 +71,6 @@ __all__ = (
     'EmojiNotFound',
     'GuildStickerNotFound',
     'PartialEmojiConversionFailure',
-    'FormattedDatetimeConversionFailure'
     'BadBoolArgument',
     'MissingRole',
     'BotMissingRole',
@@ -448,20 +447,6 @@ class PartialEmojiConversionFailure(BadArgument):
         self.argument: str = argument
         super().__init__(f'Couldn\'t convert "{argument}" to PartialEmoji.')
 
-class FormattedDatetimeConversionFailure(BadArgument):
-    """Exception raised when the timestamp provided does not match the correct
-    format.
-
-    This inherits from :exc:`BadArgument`
-
-    Attributes
-    -----------
-    argument: :class:`str`
-        The emoji supplied by the caller that did not match the regex
-    """
-    def __init__(self, argument):
-        self.argument = argument
-        super().__init__(f'Timestamp "{argument}" wasn\'t formatted correctly.')
 class GuildStickerNotFound(BadArgument):
     """Exception raised when the bot can not find the sticker.
 

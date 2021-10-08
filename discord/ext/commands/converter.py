@@ -26,7 +26,6 @@ from __future__ import annotations
 
 import re
 import inspect
-import datetime
 from typing import (
     Any,
     Dict,
@@ -77,7 +76,6 @@ __all__ = (
     'GuildChannelConverter',
     'GuildStickerConverter',
     'clean_content',
-    'FormattedDatetimeConverter',
     'Greedy',
     'run_converters',
 )
@@ -825,24 +823,6 @@ class PartialEmojiConverter(Converter[discord.PartialEmoji]):
 
         raise PartialEmojiConversionFailure(argument)
 
-class FormattedDatetimeConverter(Converter[Tuple[datetime.datetime, Optional[str]]]):
-
-    """Converts a discord style datetime to a :class:`datetime.datetime`.
-    Also returns the flag used to format the timestamp if present.
-
-    This is done by extracting the epoch from the string.
-
-    .. versionadd:: 2.0
-        Raise :exc:`.FormattedDatetimeConversionFailure` instead of generic :exc:`.BadArgument`
-     """
-
-    async def convert(self, ctx: Context, argument: str) -> Tuple[datetime.datetime, Optional[str]]:
-        
-        match = discord.utils.resolve_formatted_dt(argument)
-        if match:
-            return match
-        
-        raise FormattedDatetimeConversionFailure(argument) 
 
 class GuildStickerConverter(IDConverter[discord.GuildSticker]):
     """Converts to a :class:`~discord.GuildSticker`.

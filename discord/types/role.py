@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import Optional, TypedDict
 from .snowflake import Snowflake
 
 
@@ -41,6 +41,7 @@ class Role(_RoleOptional):
     permissions: str
     managed: bool
     mentionable: bool
+    icon: Optional[str]
 
 
 class RoleTags(TypedDict, total=False):

@@ -30,6 +30,7 @@ from .snowflake import Snowflake
 
 class _RoleOptional(TypedDict, total=False):
     tags: RoleTags
+    icon: str
 
 
 class Role(_RoleOptional):
@@ -41,7 +42,6 @@ class Role(_RoleOptional):
     permissions: str
     managed: bool
     mentionable: bool
-    icon: Optional[str]
 
 
 class RoleTags(TypedDict, total=False):
